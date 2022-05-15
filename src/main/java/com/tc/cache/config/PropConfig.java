@@ -22,12 +22,12 @@ public class PropConfig {
         try {
             reader = new FileReader("src/main/resources/application.properties");
             p.load(reader);
+            reader.close();
         } catch (Exception e) {
             System.out.println("Error while Reading Properties file!!!");
             e.printStackTrace();
             return "4";
         }
-        System.out.println(p.getProperty("cacheSize"));
-        return p.getProperty("cacheSize");
+        return p.getProperty("tc.cache.size");
     }
 }
