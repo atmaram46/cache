@@ -1,0 +1,33 @@
+package com.tc.cache.config;
+
+import lombok.Getter;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+
+import java.io.FileReader;
+import java.util.Properties;
+
+@Getter
+@Configuration
+@PropertySource("application.properties")
+public class PropConfig {
+
+    @Value("${tc.cache.size}")
+    private String cacheSize;
+
+    public String getCacheSize1() {
+        FileReader reader= null;
+        Properties p=new Properties();
+        try {
+            reader = new FileReader("src/main/resources/application.properties");
+            p.load(reader);
+        } catch (Exception e) {
+            System.out.println("Error while Reading Properties file!!!");
+            e.printStackTrace();
+            return "4";
+        }
+        System.out.println(p.getProperty("cacheSize"));
+        return p.getProperty("cacheSize");
+    }
+}

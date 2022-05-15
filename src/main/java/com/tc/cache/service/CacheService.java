@@ -1,24 +1,30 @@
 package com.tc.cache.service;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.tc.cache.implemnt.CreateCacheMap;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.tc.cache.api.CacheApiDelegate;
-import com.tc.cache.model.CacheData;
 
 @Component
-public class CacheService implements CacheApiDelegate {
+public class CacheService {
 
-    @Override
-    public ResponseEntity<Object> cacheIdGet(Integer id) {
-        //TODO implement method
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    @Autowired
+    private CreateCacheMap createCacheMap;
+
+    public void addDataInMap(int key, String value) {
+        createCacheMap.put(key, value);
     }
 
-    @Override
-    public ResponseEntity<Void> cachePut(CacheData cacheData) {
-        //TODO implement method
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    public String getDataForKey(int key) {
+        return createCacheMap.get(key);
     }
+
+    public int getMapSize() {
+        return createCacheMap.size();
+    }
+
+    public String getAllData() {
+        return createCacheMap.getAllData();
+    }
+
 }
