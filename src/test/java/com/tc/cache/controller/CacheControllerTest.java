@@ -1,5 +1,6 @@
 package com.tc.cache.controller;
 
+import com.tc.cache.model.CacheData;
 import com.tc.cache.service.CacheService;
 import org.junit.Assert;
 import org.junit.Before;
@@ -50,13 +51,16 @@ public class CacheControllerTest {
 
     @Test
     public void updateCacheKeyTest() {
-        ResponseEntity<?> result = cacheController.updateCache(1, "A");
+        CacheData data = new CacheData();
+        data.setId(1);
+        data.setData("A");
+        ResponseEntity<?> result = cacheController.updateCache(data);
         Assert.assertEquals(HttpStatus.OK, result.getStatusCode());
     }
 
-    @Test
-    public void updateCacheTest() {
-        ResponseEntity<?> result = cacheController.updateCache(1, "A");
-        Assert.assertEquals(HttpStatus.OK, result.getStatusCode());
-    }
+//    @Test
+//    public void updateCacheTest() {
+//        ResponseEntity<?> result = cacheController.updateCache(1, "A");
+//        Assert.assertEquals(HttpStatus.OK, result.getStatusCode());
+//    }
 }

@@ -1,5 +1,6 @@
 package com.tc.cache.controller;
 
+import com.tc.cache.model.CacheData;
 import com.tc.cache.service.CacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -7,27 +8,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/v1/cache")
 public class CacheController {
 
     @Autowired
     private CacheService cacheService;
 
-    @PutMapping("/add")
-    public ResponseEntity<?> updateCache(@RequestParam("key") int key, @RequestParam("value") String value) {
-        cacheService.addDataInMap(key, value);
+    @PutMapping("/cache")
+    public ResponseEntity<?> updateCache(@RequestBody CacheData value) {
+        cacheService.addDataInMap(value.getId(), (String) value.getData());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/updateKey")
-    public ResponseEntity<?> updateCacheKey(@RequestParam("key") int key, @RequestParam("value") String value) {
-        cacheService.addDataInMap(key, value);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+//    @PutMapping("/updateKey")
+//    public ResponseEntity<?> updateCacheKey(@RequestParam("key") int key, @RequestParam("value") String value) {
+//        cacheService.addDataInMap(key, value);
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
 
-    @GetMapping("/getKey")
-    public ResponseEntity<?> getCacheKey(@RequestParam("key") int key) {
-        String data = cacheService.getDataForKey(key);
+    @GetMapping("/cache/{id}")
+    public ResponseEntity<?> getCacheKey(@PathVariable int id) {
+        String data = cacheService.getDataForKey(id);
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
 
