@@ -15,6 +15,7 @@ public class CacheController {
 
     @PutMapping("/cache")
     public ResponseEntity<?> updateCache(@RequestBody CacheData value) {
+        System.out.println("Inside Put!!");
         cacheService.addDataInMap(value.getId(), (String) value.getData());
         return new ResponseEntity<>(HttpStatus.OK);
     }
