@@ -10,11 +10,7 @@ import java.util.Properties;
 
 @Getter
 @Configuration
-@PropertySource("application.properties")
 public class PropConfig {
-
-    @Value("${tc.cache.size}")
-    private String cacheSize;
 
     public String getCacheSize1() {
         FileReader reader= null;
