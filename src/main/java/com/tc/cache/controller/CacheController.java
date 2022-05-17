@@ -15,6 +15,7 @@ public class CacheController {
 
     @PutMapping("/cache")
     public ResponseEntity<?> updateCache(@RequestBody CacheData value) {
+        System.out.println("Inside Put");
         cacheService.addDataInMap(value.getId(), (String) value.getData());
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -28,6 +29,9 @@ public class CacheController {
     @GetMapping("/cache/{id}")
     public ResponseEntity<?> getCacheKey(@PathVariable int id) {
         String data = cacheService.getDataForKey(id);
+        if(data == null) {
+            data = "Error, Key Not Found!!!";
+        }
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
 
