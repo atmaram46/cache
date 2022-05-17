@@ -29,7 +29,7 @@ public class CreateCacheMap {
 
     public CreateCacheMap() {
         PropConfig propConfig = new PropConfig();
-        System.out.println("Size is:" + propConfig.getCacheSize());
+//        System.out.println("Size is:" + propConfig.getCacheSize());
         crunchifyCacheMap = new LRUMap(Integer.parseInt(propConfig.getCacheSize1()));
     }
 

@@ -26,22 +26,20 @@ public class CacheControllerTest {
 
     @Before
     public void setUp() {
-        when(cacheService.getAllData()).thenReturn("1,A");
         when(cacheService.getDataForKey(anyInt())).thenReturn("A");
-        when(cacheService.getMapSize()).thenReturn(3);
     }
 
-    @Test
-    public void getAllDataTest() {
-        ResponseEntity<?> result = cacheController.getAllData();
-        Assert.assertEquals("1,A", result.getBody());
-    }
-
-    @Test
-    public void getCacheSizeTest() {
-        ResponseEntity<?> result = cacheController.getCacheSize();
-        Assert.assertEquals(3, result.getBody());
-    }
+//    @Test
+//    public void getAllDataTest() {
+//        ResponseEntity<?> result = cacheController.getAllData();
+//        Assert.assertEquals("1,A", result.getBody());
+//    }
+//
+//    @Test
+//    public void getCacheSizeTest() {
+//        ResponseEntity<?> result = cacheController.getCacheSize();
+//        Assert.assertEquals(3, result.getBody());
+//    }
 
     @Test
     public void getCacheKeyTest() {

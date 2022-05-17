@@ -15,7 +15,6 @@ public class CacheController {
 
     @PutMapping("/cache")
     public ResponseEntity<?> updateCache(@RequestBody CacheData value) {
-        System.out.println("Inside Put");
         cacheService.addDataInMap(value.getId(), (String) value.getData());
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -35,15 +34,15 @@ public class CacheController {
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
 
-    @GetMapping("/getSize")
-    public ResponseEntity<?> getCacheSize() {
-        int data = cacheService.getMapSize();
-        return new ResponseEntity<>(data, HttpStatus.OK);
-    }
-
-    @GetMapping("/allData")
-    public ResponseEntity<?> getAllData() {
-        String data = cacheService.getAllData();
-        return new ResponseEntity<>(data, HttpStatus.OK);
-    }
+//    @GetMapping("/getSize")
+//    public ResponseEntity<?> getCacheSize() {
+//        int data = cacheService.getMapSize();
+//        return new ResponseEntity<>(data, HttpStatus.OK);
+//    }
+//
+//    @GetMapping("/allData")
+//    public ResponseEntity<?> getAllData() {
+//        String data = cacheService.getAllData();
+//        return new ResponseEntity<>(data, HttpStatus.OK);
+//    }
 }
